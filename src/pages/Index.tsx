@@ -313,7 +313,7 @@ const Index = () => {
             <div className="mt-4 overflow-hidden rounded-lg border" style={{ height: 160 }}>
               <iframe
                 title="A2Z Laundry Location"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Shimbradevi+SRA+CHS,+Sindhu+Wadi,+Ghatkopar+East,+Mumbai,+Maharashtra+400077&zoom=16"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Shimbradevi+SRA+CHS,+Sindhu+Wadi,+Ghatkopar+East,+Mumbai,+Maharashtra+400077&zoom=16&maptype=roadmap"
                 width="100%"
                 height="200"
                 style={{ border: 0, marginBottom: -40 }}
