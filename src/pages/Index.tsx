@@ -25,7 +25,10 @@ const Index = () => {
       {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-14 items-center justify-between px-4">
-          <span className="text-lg font-bold tracking-tight text-foreground">A2Z Laundry</span>
+          <div className="flex items-center gap-2">
+            <img src={a2zLogo} alt="A2Z Laundry logo" className="h-8 w-8 rounded-full object-cover" />
+            <span className="text-lg font-bold tracking-tight text-foreground">A2Z Laundry</span>
+          </div>
           <div className="hidden gap-6 md:flex">
             {["pricing", "services", "turnaround", "quality"].map((s) => (
               <a key={s} href={`#${s}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground capitalize">
