@@ -310,13 +310,13 @@ const Index = () => {
               <span>SHOP NO - 04, BUILDING NO-1, SHIMBRADEVI SRA CHS, MP Vaidya Marg, Maheshwar Nagar, Sindhu Wadi, Ghatkopar East, Mumbai, Maharashtra 400077</span>
             </div>
             {/* Google Maps Embed */}
-            <div className="mt-4 overflow-hidden rounded-lg border" style={{ height: 160 }}>
+            <div className="mt-4 overflow-hidden rounded-lg border" style={{ height: 140 }}>
               <iframe
                 title="A2Z Laundry Location"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Shimbradevi+SRA+CHS,+Sindhu+Wadi,+Ghatkopar+East,+Mumbai,+Maharashtra+400077&zoom=16"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Shimbradevi+SRA+CHS,+Sindhu+Wadi,+Ghatkopar+East,+Mumbai,+Maharashtra+400077&zoom=16&maptype=roadmap"
                 width="100%"
-                height="200"
-                style={{ border: 0, marginBottom: -40 }}
+                height="220"
+                style={{ border: 0, marginTop: -40, marginBottom: -40 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
