@@ -1,10 +1,13 @@
-import { Phone, Clock, MapPin, Instagram, CheckCircle2, Zap, Shield, Package, Search, Shirt, Wind, Sparkles } from "lucide-react";
+import { Phone, Clock, MapPin, Instagram, CheckCircle2, Zap, Shield, Package, Search, Shirt, Wind, Sparkles, Menu, MessageCircle } from "lucide-react";
 import a2zLogo from "@/assets/A2Z_logo.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { useState } from "react";
 
 const WHATSAPP_URL = "https://wa.me/9109920602363?text=Hi%20A2Z%20Laundry%2C%20I%27d%20like%20to%20place%20an%20order.";
 
@@ -19,7 +22,40 @@ const qcSteps = [
   { title: "Dispatch", desc: "Delivered to your door. You're notified at every step via WhatsApp.", icon: Zap },
 ];
 
+const faqs = [
+  {
+    q: "What if a garment is damaged or lost?",
+    a: "Every garment is inspected and documented at pickup. If damage occurs during processing, we compensate up to 10x the service cost for that item. Lost items are replaced at fair market value. Claims must be raised within 24 hours of delivery.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "We accept Cash, UPI (Google Pay, PhonePe, Paytm), and bank transfers. Payment is collected at the time of delivery. No advance payment required.",
+  },
+  {
+    q: "Can I cancel or reschedule a pickup?",
+    a: "Yes. Message us on WhatsApp at least 2 hours before the scheduled pickup slot to cancel or reschedule at no charge. Late cancellations may not be accommodated on the same day.",
+  },
+  {
+    q: "Do you handle delicate fabrics like silk or wool?",
+    a: "Yes — silk, wool, linen, and cashmere are processed via dry cleaning with fabric-specific solvents. We do not accept leather, suede, or heavily embellished bridal wear. If in doubt, send a photo on WhatsApp and we'll confirm.",
+  },
+  {
+    q: "What areas do you deliver to?",
+    a: "Free pickup and delivery within Ghatkopar East and West. Areas beyond Ghatkopar (Vikhroli, Chembur, Kurla) are serviced with a ₹30 delivery surcharge. Confirm your area via WhatsApp before booking.",
+  },
+];
+
+const navSections = [
+  { id: "pricing", label: "Pricing" },
+  { id: "services", label: "Services" },
+  { id: "turnaround", label: "Turnaround" },
+  { id: "quality", label: "Quality" },
+  { id: "faq", label: "FAQ" },
+];
+
 const Index = () => {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Sticky Nav */}
@@ -30,17 +66,54 @@ const Index = () => {
             <span className="text-lg font-bold tracking-tight text-foreground">A2Z Laundry</span>
           </div>
           <div className="hidden gap-6 md:flex">
-            {["pricing", "services", "turnaround", "quality"].map((s) => (
-              <a key={s} href={`#${s}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground capitalize">
-                {s === "turnaround" ? "Turnaround" : s}
+            {navSections.map((s) => (
+              <a key={s.id} href={`#${s.id}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                {s.label}
               </a>
             ))}
           </div>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-            <Button size="sm" className="gap-2">
-              <Phone className="h-4 w-4" /> Book Now
-            </Button>
-          </a>
+          <div className="flex items-center gap-2">
+            {/* Mobile hamburger */}
+            <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+              <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-64">
+                <SheetTitle className="sr-only">Navigation</SheetTitle>
+                <div className="flex items-center gap-2 mb-6">
+                  <img src={a2zLogo} alt="A2Z Laundry logo" className="h-8 w-8 rounded-full object-cover" />
+                  <span className="text-lg font-bold text-foreground">A2Z Laundry</span>
+                </div>
+                <nav className="flex flex-col gap-4">
+                  {navSections.map((s) => (
+                    <a
+                      key={s.id}
+                      href={`#${s.id}`}
+                      onClick={() => setMobileNavOpen(false)}
+                      className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {s.label}
+                    </a>
+                  ))}
+                </nav>
+                <div className="mt-8">
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full gap-2">
+                      <Phone className="h-4 w-4" /> Book via WhatsApp
+                    </Button>
+                  </a>
+                </div>
+              </SheetContent>
+            </Sheet>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="gap-2">
+                <Phone className="h-4 w-4" /> Book Now
+              </Button>
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -92,6 +165,13 @@ const Index = () => {
               ))}
             </TableBody>
           </Table>
+        </div>
+        {/* Service Area Callout */}
+        <div className="mx-auto mt-6 max-w-3xl rounded-lg border border-primary/20 bg-primary/5 px-4 py-3">
+          <p className="text-sm text-foreground text-center">
+            <MapPin className="inline h-4 w-4 mr-1 text-primary" />
+            Free pickup & delivery within <strong>Ghatkopar East & West</strong>. Areas beyond Ghatkopar serviced with ₹30 delivery surcharge — <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80">confirm via WhatsApp</a>.
+          </p>
         </div>
         <p className="mt-4 text-center text-sm text-muted-foreground">
           Prices inclusive of pickup & delivery within Ghatkopar. No surge pricing. No hidden charges.
@@ -202,6 +282,24 @@ const Index = () => {
 
       <Separator />
 
+      {/* FAQ */}
+      <section id="faq" className="container mx-auto px-4 py-16 md:py-20">
+        <h2 className="text-3xl font-bold text-foreground text-center">Frequently Asked Questions</h2>
+        <p className="mt-2 text-center text-muted-foreground">Straight answers to common concerns.</p>
+        <div className="mx-auto mt-10 max-w-2xl">
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`}>
+                <AccordionTrigger className="text-left text-foreground">{faq.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed">{faq.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <Separator />
+
       {/* Footer */}
       <footer className="bg-secondary py-12">
         <div className="container mx-auto grid gap-8 px-4 md:grid-cols-3">
@@ -210,6 +308,19 @@ const Index = () => {
             <div className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
               <span>SHOP NO - 04, BUILDING NO-1, SHIMBRADEVI SRA CHS, MP Vaidya Marg, Maheshwar Nagar, Sindhu Wadi, Ghatkopar East, Mumbai, Maharashtra 400077</span>
+            </div>
+            {/* Google Maps Embed */}
+            <div className="mt-4 overflow-hidden rounded-lg border">
+              <iframe
+                title="A2Z Laundry Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.6!2d72.908!3d19.086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA1JzEwLjAiTiA3MsKwNTQnMjkuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+                width="100%"
+                height="180"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
           <div>
@@ -247,6 +358,17 @@ const Index = () => {
           <p className="text-center text-xs text-muted-foreground">© {new Date().getFullYear()} A2Z Laundry. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button (Mobile) */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[hsl(142,70%,45%)] text-white shadow-lg transition-transform hover:scale-110 md:hidden"
+        aria-label="Book via WhatsApp"
+      >
+        <MessageCircle className="h-6 w-6" />
+      </a>
     </div>
   );
 };
