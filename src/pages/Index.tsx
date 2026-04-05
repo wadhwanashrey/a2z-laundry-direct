@@ -46,7 +46,7 @@ const Index = () => {
           A2Z Laundry – Flawless Quality. Transparent Pricing.
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-          No gimmicks. No hidden fees. Just clean clothes, delivered on time with real-time WhatsApp updates.
+          where outfits receive the care they deserve
         </p>
         <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block">
           <Button size="lg" className="gap-2 text-base px-8 py-6 rounded-xl shadow-lg">
@@ -61,7 +61,7 @@ const Index = () => {
       {/* Pricing */}
       <section id="pricing" className="container mx-auto px-4 py-16 md:py-20">
         <h2 className="text-3xl font-bold text-foreground text-center">Transparent Pricing</h2>
-        <p className="mt-2 text-center text-muted-foreground">What you see is what you pay. Minimum order values shown upfront.</p>
+        <p className="mt-2 text-center text-muted-foreground">What you see is what you pay.</p>
         <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-lg border">
           <Table>
             <TableHeader>
@@ -99,7 +99,7 @@ const Index = () => {
       {/* Services */}
       <section id="services" className="container mx-auto px-4 py-16 md:py-20">
         <h2 className="text-3xl font-bold text-foreground text-center">Core Services</h2>
-        <p className="mt-2 text-center text-muted-foreground">We do these well. No risky specialty services we can't guarantee.</p>
+        <p className="mt-2 text-center text-muted-foreground">Things we do the best</p>
         <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-3">
           {[
             {
@@ -135,7 +135,7 @@ const Index = () => {
       <section id="turnaround" className="container mx-auto px-4 py-16 md:py-20">
         <h2 className="text-3xl font-bold text-foreground text-center">Realistic Turnaround Times</h2>
         <p className="mt-2 text-center text-muted-foreground">
-          Based on peak operational load — not best-case scenarios.
+          Based on peak operational load 
         </p>
         <div className="mx-auto mt-10 grid max-w-3xl gap-6 md:grid-cols-2">
           <Card className="border">
@@ -176,7 +176,7 @@ const Index = () => {
       <section id="quality" className="container mx-auto px-4 py-16 md:py-20">
         <h2 className="text-3xl font-bold text-foreground text-center">8-Stage Quality Control</h2>
         <p className="mt-2 text-center text-muted-foreground">
-          Every garment passes through 8 checkpoints. No shortcuts.
+          Every garment passes through 8 checkpoints.
         </p>
         <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {qcSteps.map((step, i) => (
